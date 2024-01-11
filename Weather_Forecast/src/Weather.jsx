@@ -1,10 +1,12 @@
 import axios from 'axios'
+import moment from 'moment/moment'
 import React, { useEffect, useState } from 'react'
 
 const Weather = () => {
     const [city,setCity]= useState('')
     const [currentWeather,setCurrentWeather]=useState(null)
     const [unit, setUnit] = useState('metric')
+    const [forecastData, setForecastData] = useState(null)
 
 
     const API_KEY='0563c8f69d0ad320ff59c131904a3904'
@@ -16,9 +18,13 @@ const Weather = () => {
                 `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${API_KEY}`
               );
               setCurrentWeather(currentWeatherResponse.data);
-            }catch (error) {
-                console.error('Error fetching weather data:', error);
-              }
+              const forecastResponse = await axios.get(
+                `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=${unit}&appid=${API_KEY}`
+              );
+              setForecastData(forecastResponse.data.list);
+            } catch (error) {
+              console.error('Error fetching weather data:', error);
+            }
             }
             if (city) {
                 fetchData();
@@ -31,7 +37,7 @@ const Weather = () => {
       }
 
       return (
-        <div className="bg-slate-900 h-screen">
+        <div className="bg-slate-900 ">
           <header className="text-xl z-10 shadow-md shadow-white text-center bg-gradient-to-l from-blue-500 to-purple-500 ">Weather Forecast App</header>
           <div className="m-2 p-2">
             <div className="flex flex-col items-center">
@@ -57,9 +63,23 @@ const Weather = () => {
                   <p className='text-right'>Wind Direction: {currentWeather.wind.deg}°</p>
                 </div>
               )}
+              {forecastData && (
+            <div className=" flex flex-col bg-gradient-to-l from-purple-500 to-blue-500 w-1/2 p-4 border-2 mt-4 rounded-md  text-white">
+                <h2 className="text-2xl text-center mb-2">5-Day Forecast</h2>
+                <br/>
+                <ul>
+                {forecastData.slice(0, 5).map((data, index) => (
+                    <li key={index} className="mb-2 text-black text-center text-xl">
+                    <p className='text-left text-green-900 p-2'>Date: {moment(data.dt_txt).format('YYYY-MM-DD')}</p>
+                    <p>Average Temperature: {data.main.temp}°{unit === 'metric' ? 'C' : 'F'}</p>
+                    </li>
+                ))}
+                </ul>
             </div>
-            <div className="mt-4">Forecast</div>
+            )}
+            </div>
           </div>
+          <nav className='text-center text-white'>@2024 Rameshwar Jaiswal</nav>
         </div>
       )
 }
