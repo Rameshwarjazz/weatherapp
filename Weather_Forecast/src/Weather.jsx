@@ -81,7 +81,7 @@ const Weather = () => {
               <input
                 type="text"
                 value={city}
-                className="bg-gray-200 border-2 w-1/2 capitalize hover:bg-gray-300 outline-none rounded-xl p-2"
+                className="bg-gray-200 border-2 w-3/4 capitalize hover:bg-gray-300 outline-none rounded-xl p-2"
                 placeholder="Enter Location"
                 onChange={(e) => setCity(e.target.value)}
               />
@@ -89,7 +89,7 @@ const Weather = () => {
                 Toggle Unit
               </button>
               {currentWeather && (
-                <div className=" bg-gradient-to-l from-blue-500 to-purple-500 w-1/2 p-4 border-2 mt-4 rounded-md">
+                <div className=" bg-gradient-to-l from-blue-500 to-purple-500 w-3/4 p-4 border-2 mt-4 rounded-md">
                   <h2 className="text-2xl mb-2">Current Weather Details</h2>
                   <p className='text-xl'>Temperature: {currentWeather.main.temp}°{unit === 'metric' ? 'C' : 'F'}</p>
                   <p className=''>Min Temperature: {currentWeather.main.temp_min}°{unit === 'metric' ? 'C' : 'F'}</p>
@@ -102,7 +102,7 @@ const Weather = () => {
                 </div>
               )}
               {forecastData && (
-            <div className=" bg-gradient-to-l from-purple-500 to-blue-500 w-1/2 p-4 border-2 mt-4 rounded-md">
+            <div className=" bg-gradient-to-l from-purple-500 to-blue-500 w-3/4 p-4 border-2 mt-4 rounded-md">
                 <h2 className="text-2xl mb-2">5-Day Forecast</h2>
                 <br/>
                 <ul>
