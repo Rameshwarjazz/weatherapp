@@ -24,6 +24,7 @@ This is a simple Weather Forecast App built using React and the OpenWeatherMap A
 
 ### Configuration
 To run the app, you'll need to obtain an API key from OpenWeatherMap. You can get it here. Once you have the API key, open the Weather.js file and replace the API_KEY constant with your own key.
+```javascript
 const API_KEY = 'your-api-key';
 
 
