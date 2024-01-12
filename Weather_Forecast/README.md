@@ -15,9 +15,11 @@ This is a simple Weather Forecast App built using React and the OpenWeatherMap A
    ```bash
    git clone https://github.com/your-username/weather-forecast-app.git
 2. Navigate to the project directory:
+    ```bash
     cd weather-forecast-app
 
 3. Install dependencies:
+    ```bash
     npm install
 
 ### Configuration
